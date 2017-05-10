@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
 
-  get 'api/shows' => 'shows#index'
-
-  post 'api/shows' => 'shows#create'
+  devise_for :users, :controllers => {sessions: 'sessions', registrations: 'registrations'}
+  resources :users
+  
+  scope path: "api/" do 
+    get 'users/favourites' => 'users#favourites'
+    get 'shows/:id/favourited_by' => 'shows#favourited_by'
+    resources :shows 
+    resources :users
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

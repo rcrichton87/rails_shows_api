@@ -32,10 +32,9 @@ s3 = Show.create(
   }
 )
 
-u1 = User.create(
-  {
-    name: "Ross Crichton"
-  }
-)
+u1 = User.create({email: 'ross@email.com', password: 'password', password_confirmation: 'password'})
+u2 = User.create({email: 'david@email.com', password: 'password1', password_confirmation: 'password1'})
 
 FavouriteShow.create({user_id: u1[:id], show_id: s2[:id] })
+FavouriteShow.create({user_id: u2[:id], show_id: s2[:id] })
+FavouriteShow.create({user_id: u2[:id], show_id: s3[:id] })
